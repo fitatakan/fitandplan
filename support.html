@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Fit & Plan destek sayfası — sıkça sorulan sorular ve iletişim." />
+<meta name="theme-color" content="#FF8C5A" />
+<title>Destek — Fit & Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style-pages.css">
+
+<style>
+/* Support sayfasına özel — FAQ accordion */
+.faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.faq-question {
+    padding: 18px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background 0.2s;
+}
+.faq-question:hover { background: var(--bg); }
+.faq-question::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--orange-1);
+    transition: transform 0.2s;
+}
+.faq-item.open .faq-question::after {
+    content: '−';
+    transform: rotate(0deg);
+}
+.faq-answer {
+    padding: 0 22px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, padding 0.3s;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+.faq-item.open .faq-answer {
+    padding: 0 22px 20px;
+    max-height: 500px;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="inner">
+        <a href="index.html" class="logo">
+            <span class="logo-mark">F</span>
+            Fit &amp; Plan
+        </a>
+        <div class="nav-links">
+            <a href="index.html#features">Özellikler</a>
+            <a href="privacy.html">Gizlilik</a>
+            <a href="terms.html">Şartlar</a>
+            <a href="support.html">Destek</a>
+        </div>
+    </div>
+</nav>
+
+<section class="page-hero">
+    <div class="container">
+        <h1>Destek</h1>
+        <div class="meta">Sıkça sorulan sorular ve iletişim</div>
+    </div>
+</section>
+
+<section class="content">
+<div class="container">
+
+<h2>Sıkça Sorulan Sorular</h2>
+
+<div class="faq-item">
+    <div class="faq-question">Uygulama ücretli mi?</div>
+    <div class="faq-answer">
+        Hayır. Fit &amp; Plan tamamen ücretsiz. Uygulama içi satın alma, abonelik veya reklam yok.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Hesap açmam veya giriş yapmam gerekiyor mu?</div>
+    <div class="faq-answer">
+        Hayır. Kayıt veya giriş yok. Uygulamayı yüklediğin anda kullanmaya başlayabilirsin. Tüm verilerin cihazında saklanır.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Verilerim nerede saklanıyor?</div>
+    <div class="faq-answer">
+        Tüm veriler (profil, plan, tercihler) yalnızca senin cihazında, iOS'in UserDefaults mekanizmasında saklanır. Hiçbir veri sunucumuza gönderilmez. Detay için <a href="privacy.html">Gizlilik Politikası</a>'na bakabilirsin.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Cihazımı değiştirirsem verilerim ne olur?</div>
+    <div class="faq-answer">
+        Şu an cihazlar arası senkron yok. Uygulamayı yeni cihaza yükleyince profilini sıfırdan oluşturman gerekir. Gelecekteki sürümlerde isteğe bağlı iCloud senkronu eklenebilir.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Antrenman ile yemek planı nasıl entegre çalışıyor?</div>
+    <div class="faq-answer">
+        Antrenman planın varsa, meal plan algoritması o günün antrenman durumuna göre menüyü ayarlar: antrenman günlerinde protein ağırlıklı (et, tavuk, balık), dinlenme günlerinde daha hafif (bakliyat, sebze). Bu otomatik olur — sadece "Change All" basman gerekir.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Bebek/çocuk için güvenli mi?</div>
+    <div class="faq-answer">
+        Uygulama 1-2 yaş bebekler için bazı uyarılar (örneğin acı veya çiğneme zorluğu yaratabilecek yemeklerde) gösterir, ancak bu yalnızca bilgi amaçlıdır. Bebek beslenmesi için her zaman çocuk doktoruna danış.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Sağlık sorunum var, uygulamayı kullanabilir miyim?</div>
+    <div class="faq-answer">
+        Fit &amp; Plan tıbbi tavsiye sağlamaz. Kronik hastalık, hamilelik, sakatlık veya cerrahi geçmişin varsa lütfen yeni bir antrenman/beslenme programına başlamadan önce doktoruna danış.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Bildirimler nasıl çalışıyor?</div>
+    <div class="faq-answer">
+        Yerel bildirimlerle (cihazda oluşturulan, sunucu kullanmayan) çalışır. Meal Hatırlatma ve Antrenman Hatırlatma'yı ayrı ayrı açıp kapatabilirsin, saat ayarlayabilirsin. Profile tab'ından yönetebilirsin.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Bir hata buldum / öneri vermek istiyorum, ne yapmalıyım?</div>
+    <div class="faq-answer">
+        E-posta gönder: <a href="mailto:atakantankurt@hotmail.com">atakantankurt@hotmail.com</a> — ekran görüntüsü, iOS sürümü ve cihaz modelini eklersen daha hızlı yardım edebilirim.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">Verilerimi nasıl silebilirim?</div>
+    <div class="faq-answer">
+        Profile tab'ından "Meal Profili Sıfırla", "Training Profili Sıfırla" veya "Meal Planını Sıfırla" seçeneklerini kullanabilirsin. Hepsini birden silmek için: uygulamayı telefondan kaldır — UserDefaults'taki tüm veri otomatik silinir.
+    </div>
+</div>
+
+<h2 style="margin-top: 50px;">İletişim</h2>
+
+<div class="contact-box">
+    <h3>Doğrudan iletişim için</h3>
+    <p>FAQ'da cevabı bulamadığın sorular, bug raporu veya öneri için doğrudan e-posta gönder. Genelde 1-2 gün içinde dönüş yaparım.</p>
+    <p style="margin-bottom: 0;"><a href="mailto:atakantankurt@hotmail.com?subject=Fit%20%26%20Plan%20%E2%80%94%20Destek">atakantankurt@hotmail.com</a></p>
+</div>
+
+<p style="font-size: 14px; color: var(--text-secondary); margin-top: 32px;"><em>E-postanızda iOS sürümü ve cihaz modeli (örn. iPhone 15 Pro, iOS 26.4) belirtirseniz daha hızlı yardımcı olabilirim.</em></p>
+
+</div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Atakan Tankurt · <a href="index.html">Ana Sayfa</a> · <a href="privacy.html">Gizlilik</a> · <a href="terms.html">Şartlar</a></p>
+    </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Fit & Plan — Haftalık yemek planı ve 12 haftalık antrenman programı tek uygulamada. Aileye özel, akıllı, ücretsiz." />
+<meta name="theme-color" content="#FF8C5A" />
+<title>Fit & Plan — Haftalık Yemek & Antrenman Planı</title>
+
+<!-- Open Graph / sosyal medya -->
+<meta property="og:title" content="Fit & Plan — Haftalık Yemek & Antrenman" />
+<meta property="og:description" content="Aile için akıllı yemek planı, kişisel 12 haftalık antrenman programı. Ücretsiz, kayıt yok." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --orange-1: #FF8C5A;
+        --orange-2: #FF6B8E;
+        --green-1: #4DC57C;
+        --green-2: #5BD3C0;
+        --indigo-1: #5570FF;
+        --indigo-2: #8A5BFF;
+        --pink-1: #D85AAD;
+        --pink-2: #8C4DD1;
+        --bg: #FAFAFB;
+        --card: #FFFFFF;
+        --text: #1A1A1F;
+        --text-secondary: #6B6B73;
+        --border: #EAEAEC;
+        --shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', system-ui, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+        position: sticky;
+        top: 0;
+        background: rgba(250, 250, 251, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
+    }
+    .navbar .inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 64px;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 18px;
+    }
+    .logo-mark {
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+        display: grid; place-items: center;
+        color: white;
+        font-size: 18px;
+    }
+    .nav-links {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-secondary);
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ============ HERO ============ */
+    .hero {
+        padding: 80px 0 120px;
+        background: linear-gradient(160deg, #FFF4EE 0%, #FFEEF4 50%, #F5F0FF 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 48px;
+        align-items: center;
+    }
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 140, 90, 0.3);
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--orange-1);
+        margin-bottom: 24px;
+    }
+    .hero h1 {
+        font-size: clamp(38px, 5.5vw, 64px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 20px;
+    }
+    .hero h1 .gradient-text {
+        background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+        font-size: 19px;
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+        max-width: 520px;
+    }
+    .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary {
+        background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+        color: white;
+        box-shadow: 0 8px 24px rgba(255, 107, 142, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(255, 107, 142, 0.35); }
+    .btn-secondary {
+        background: white;
+        border: 1px solid var(--border);
+        color: var(--text);
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* Phone mockup */
+    .phone-mockup {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        perspective: 1200px;
+    }
+    .phone {
+        width: 280px;
+        height: 580px;
+        background: #1a1a1f;
+        border-radius: 44px;
+        padding: 8px;
+        box-shadow: var(--shadow-lg), 0 4px 12px rgba(0,0,0,0.1);
+        transform: rotate(-3deg);
+    }
+    .phone-screen {
+        background: linear-gradient(160deg, var(--orange-1), var(--orange-2));
+        border-radius: 36px;
+        height: 100%;
+        padding: 28px 20px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    .phone-time {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 24px;
+    }
+    .phone-greeting {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 4px;
+    }
+    .phone-date {
+        font-size: 13px;
+        opacity: 0.85;
+        margin-bottom: 20px;
+    }
+    .phone-card {
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+    .phone-card-title {
+        font-size: 11px;
+        font-weight: 700;
+        opacity: 0.85;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+    }
+    .phone-card-content {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .phone-card-sub {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 2px;
+    }
+    .phone-streak {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.2);
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 8px;
+    }
+
+    /* ============ FEATURES ============ */
+    .features {
+        padding: 100px 0;
+    }
+    .section-eyebrow {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--orange-1);
+        margin-bottom: 12px;
+    }
+    .section-title {
+        font-size: clamp(30px, 4vw, 44px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        max-width: 700px;
+    }
+    .section-sub {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin-bottom: 56px;
+    }
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+    .feature-card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 28px;
+        border: 1px solid var(--border);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+    }
+    .feature-icon {
+        width: 52px; height: 52px;
+        border-radius: 16px;
+        display: grid; place-items: center;
+        font-size: 26px;
+        color: white;
+        margin-bottom: 18px;
+    }
+    .feature-icon.meal   { background: linear-gradient(135deg, var(--orange-1), var(--orange-2)); }
+    .feature-icon.train  { background: linear-gradient(135deg, var(--green-1), var(--green-2)); }
+    .feature-icon.smart  { background: linear-gradient(135deg, var(--pink-1), var(--pink-2)); }
+    .feature-icon.priv   { background: linear-gradient(135deg, var(--indigo-1), var(--indigo-2)); }
+
+    .feature-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    .feature-card p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.55;
+    }
+
+    /* ============ HIGHLIGHT (smart integration) ============ */
+    .highlight {
+        padding: 100px 0;
+        background: linear-gradient(160deg, #FFF4EE 0%, #FFEEF4 50%, #F5EAFF 100%);
+    }
+    .highlight-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: center;
+    }
+    .highlight-points {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 32px;
+    }
+    .highlight-point {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    .highlight-point-icon {
+        flex-shrink: 0;
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+        display: grid; place-items: center;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .highlight-point h4 {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .highlight-point p {
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+    .highlight-visual {
+        background: white;
+        border-radius: 24px;
+        padding: 40px 32px;
+        box-shadow: var(--shadow);
+        position: relative;
+    }
+    .day-card {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        padding: 14px;
+        border-radius: 16px;
+        margin-bottom: 12px;
+    }
+    .day-card.training {
+        background: linear-gradient(90deg, rgba(255,140,90,0.08), rgba(255,107,142,0.04));
+        border: 1px solid rgba(255,140,90,0.15);
+    }
+    .day-card.rest {
+        background: var(--bg);
+    }
+    .day-icon {
+        width: 48px; height: 48px;
+        border-radius: 12px;
+        display: grid; place-items: center;
+        color: white;
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+    .day-icon.training { background: linear-gradient(135deg, var(--orange-1), var(--orange-2)); }
+    .day-icon.rest     { background: linear-gradient(135deg, #C9C9D1, #A5A5B0); }
+    .day-info { flex: 1; }
+    .day-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .day-meal { font-size: 13px; color: var(--text-secondary); }
+    .day-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 100px;
+        background: rgba(255,140,90,0.15);
+        color: var(--orange-1);
+        margin-left: 8px;
+    }
+
+    /* ============ CTA ============ */
+    .cta-section {
+        padding: 100px 0;
+        text-align: center;
+    }
+    .cta-section h2 {
+        font-size: clamp(30px, 4vw, 44px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+    }
+    .cta-section p {
+        font-size: 18px;
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+    }
+    .coming-soon {
+        display: inline-block;
+        padding: 20px 32px;
+        background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+        border-radius: 100px;
+        color: white;
+        font-weight: 700;
+        font-size: 16px;
+        box-shadow: 0 16px 40px rgba(255, 107, 142, 0.25);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+        padding: 60px 0 40px;
+        border-top: 1px solid var(--border);
+        background: white;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .footer-col h5 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+    }
+    .footer-col a {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+        margin-bottom: 10px;
+        transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--orange-1); }
+    .footer-tagline {
+        font-size: 14px;
+        color: var(--text-secondary);
+        max-width: 280px;
+        margin-top: 12px;
+    }
+    .footer-bottom {
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: var(--text-secondary);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 860px) {
+        .hero { padding: 60px 0 80px; }
+        .hero-content { grid-template-columns: 1fr; gap: 40px; }
+        .phone { transform: rotate(0); }
+        .highlight-content { grid-template-columns: 1fr; gap: 40px; }
+        .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        .nav-links { gap: 18px; font-size: 13px; }
+    }
+    @media (max-width: 480px) {
+        .nav-links a:nth-child(1) { display: none; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+    <div class="container inner">
+        <a href="/" class="logo">
+            <span class="logo-mark">F</span>
+            Fit &amp; Plan
+        </a>
+        <div class="nav-links">
+            <a href="#features">Özellikler</a>
+            <a href="#smart">Akıllı Plan</a>
+            <a href="privacy.html">Gizlilik</a>
+            <a href="support.html">Destek</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+    <div class="container hero-content">
+        <div>
+            <div class="hero-badge">
+                <span>✨</span> Yakında App Store'da
+            </div>
+            <h1>
+                Beslenme ve antrenmanın
+                <span class="gradient-text">tek uygulamada.</span>
+            </h1>
+            <p class="lead">
+                Haftalık yemek planın ve 12 haftalık antrenman programın aileye özel hazırlansın. Akıllı entegrasyon, otomatik market listesi, kayıt gerektirmez.
+            </p>
+            <div class="cta-row">
+                <a href="#features" class="btn btn-primary">
+                    Özellikleri Gör <span>→</span>
+                </a>
+                <a href="support.html" class="btn btn-secondary">
+                    İletişim
+                </a>
+            </div>
+        </div>
+        <div class="phone-mockup">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="phone-time">9:41</div>
+                    <div class="phone-greeting">Günaydın 👋</div>
+                    <div class="phone-date">Pazartesi · 1 Haziran</div>
+                    <div class="phone-streak">🔥 5 gün üst üste antrenman</div>
+
+                    <div style="height: 20px;"></div>
+
+                    <div class="phone-card">
+                        <div class="phone-card-title">Bugünkü Yemek 💪 Protein</div>
+                        <div class="phone-card-content">Izgara Tavuk + Bulgur Pilavı</div>
+                        <div class="phone-card-sub">1240 / 2000 kcal</div>
+                    </div>
+                    <div class="phone-card">
+                        <div class="phone-card-title">Bugünkü Antrenman</div>
+                        <div class="phone-card-content">4 egzersiz</div>
+                        <div class="phone-card-sub">~45 dk · Ağırlık</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-eyebrow">Özellikler</div>
+        <h2 class="section-title">İhtiyacın olan her şey, hiç fazlası değil.</h2>
+        <p class="section-sub">
+            Hesap yok, reklam yok, takip yok. Hızlı, sade, kullanışlı.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon meal">🍴</div>
+                <h3>Haftalık Yemek Planı</h3>
+                <p>Aile boyutu, diyet tercihleri ve mevsime göre 7 günlük plan otomatik oluşur. Sevmediklerini hariç tut, beğendiklerini kilitle.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon train">🏋️</div>
+                <h3>12 Haftalık Antrenman</h3>
+                <p>Hedefine (kilo verme, kas yapma, form) ve ekipmanına (ev, dumbbell, salon) göre kişisel program. HIIT, kardiyo, ağırlık, karma.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon smart">⚡</div>
+                <h3>Akıllı Entegrasyon</h3>
+                <p>Antrenman olduğu günler menü protein ağırlıklı, dinlenme günlerinde daha hafif. Algoritma planı senin için optimize eder.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon priv">🔒</div>
+                <h3>Tam Gizlilik</h3>
+                <p>Tüm veriler senin cihazında. Kayıt yok, e-posta yok, takip yok. Üçüncü taraf SDK kullanılmaz.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ HIGHLIGHT ============ -->
+<section class="highlight" id="smart">
+    <div class="container highlight-content">
+        <div>
+            <div class="section-eyebrow">Diferansiyasyon</div>
+            <h2 class="section-title">Antrenman ve menü birlikte çalışır.</h2>
+            <p class="section-sub" style="margin-bottom: 0;">
+                Çoğu fitness uygulaması antrenmanı, çoğu yemek uygulaması menüyü öne çıkarır. Fit &amp; Plan ikisini birleştirir — bugünün gerçeğine göre.
+            </p>
+
+            <div class="highlight-points">
+                <div class="highlight-point">
+                    <div class="highlight-point-icon">💪</div>
+                    <div>
+                        <h4>Antrenman günlerinde yüksek protein</h4>
+                        <p>Et, tavuk, balık öne çıkar — kas onarımı ve doyum için.</p>
+                    </div>
+                </div>
+                <div class="highlight-point">
+                    <div class="highlight-point-icon">🌱</div>
+                    <div>
+                        <h4>Dinlenme günlerinde hafif menü</h4>
+                        <p>Bakliyat, sebze ağırlıklı seçim — sindirim ve iyileşme için.</p>
+                    </div>
+                </div>
+                <div class="highlight-point">
+                    <div class="highlight-point-icon">🔔</div>
+                    <div>
+                        <h4>Akıllı bildirimler</h4>
+                        <p>Antrenman günüyse motivasyon, dinlenme günüyse "ara ver" hatırlatması.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-visual">
+            <div style="font-size: 14px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;">
+                Bu hafta
+            </div>
+            <div class="day-card training">
+                <div class="day-icon training">🏋️</div>
+                <div class="day-info">
+                    <div class="day-name">Pazartesi <span class="day-badge">🏋️ Antrenman</span></div>
+                    <div class="day-meal">Izgara Tavuk + Bulgur</div>
+                </div>
+            </div>
+            <div class="day-card rest">
+                <div class="day-icon rest">🌱</div>
+                <div class="day-info">
+                    <div class="day-name">Salı</div>
+                    <div class="day-meal">Mercimek Çorbası + Salata</div>
+                </div>
+            </div>
+            <div class="day-card training">
+                <div class="day-icon training">🏋️</div>
+                <div class="day-info">
+                    <div class="day-name">Çarşamba <span class="day-badge">🏋️ Antrenman</span></div>
+                    <div class="day-meal">Fırın Somon + Sebze</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Yakında App Store'da</h2>
+        <p>Fit &amp; Plan launch için son hazırlık aşamasında. İlk haberi alanlardan ol.</p>
+        <div class="coming-soon">
+            🚀 Coming Soon
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="/" class="logo" style="font-size: 18px;">
+                    <span class="logo-mark">F</span>
+                    Fit &amp; Plan
+                </a>
+                <p class="footer-tagline">
+                    Aile için akıllı yemek planı ve antrenman programı.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Ürün</h5>
+                <a href="#features">Özellikler</a>
+                <a href="#smart">Akıllı Plan</a>
+                <a href="#">App Store</a>
+            </div>
+            <div class="footer-col">
+                <h5>Hakkında</h5>
+                <a href="privacy.html">Gizlilik Politikası</a>
+                <a href="terms.html">Kullanım Şartları</a>
+                <a href="support.html">Destek</a>
+            </div>
+            <div class="footer-col">
+                <h5>İletişim</h5>
+                <a href="mailto:atakantankurt@hotmail.com">atakantankurt@hotmail.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Atakan Tankurt. Tüm hakları saklıdır.</div>
+            <div>Made in Türkiye 🇹🇷</div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
